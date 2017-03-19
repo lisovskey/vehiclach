@@ -1,0 +1,74 @@
+:root {
+    --link-color: #85929E;
+    --hover-color: #EBF5FB;
+    --desc-color: #bbbbbb;
+    --bg-color: #ffffff;
+}
+
+html {
+    font-size: 20px;
+    background-color: var(--bg-color);
+}
+
+a, m {
+    padding: 8px;
+    padding-top: 1px;
+    padding-bottom: 4px;
+}
+
+a:hover, tr:hover {
+    background-color: var(--hover-color);
+    transition: .2s ease;
+}
+
+a:link, a:hover, a:active, a:visited, a:focus {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+tr:hover {
+   cursor: pointer;
+}
+
+a:active, tr:active {
+    background: var(--link-color);
+    transition: .05s ease;
+}
+
+.table td {
+    border-top: 1px solid var(--hover-color);
+    border-bottom: 1px solid var(--hover-color);
+}
+
+.table td.obj {
+    font-weight: 500;
+    color: var(--link-color);
+    transition: .5s ease .5s;
+}
+
+tr:active td.obj, a:active {
+    color: var(--bg-color);
+    transition: none;
+}
+
+.table td.desc {
+    font-weight: 300;
+    color: var(--desc-color);
+    text-align: right;
+    transition: .5s ease .5s;
+}
+
+tr:active td.desc {
+    opacity: 0;
+    transition: none;
+}
+
+p.text-center {
+    margin-top: 1em;
+    font-weight: 100;
+    color: var(--desc-color);
+}
+
+.error {
+    font-size: 64px;
+}

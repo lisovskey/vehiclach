@@ -1,0 +1,27 @@
+{% extends 'engine/base.html' %}
+
+{% block title %}
+    {{ mark_name }} {{ model_name }}
+{% endblock %}
+
+{% block content %}
+    <p class="text-center">
+        <a href="{% url 'engine:index' %}">Cars</a>
+        <text>></text>
+        <a href="{% url 'engine:subindex' mark_name %}">{{ mark_name }}</a>        
+        <text>></text>
+        <m>{{ model_name }}</m>
+    </p>
+    {% if evolist %}
+        <table class="table"><tbody>
+            {% for evo in evolist %}
+            <tr>
+                <td class="obj">{{ evo.name }}</td>
+                <td class="desc">{{ evo.year }}</td>
+            </tr>
+            {% endfor %}
+        </tbody></table>
+    {% else %}
+        <p class="text-center">{{ error_message }}</p>
+    {% endif %}
+{% endblock %}
