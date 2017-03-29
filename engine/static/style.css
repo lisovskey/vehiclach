@@ -19,6 +19,7 @@ a, m {
 a:hover, tr:hover {
     background-color: var(--hover-color);
     transition: .2s ease;
+    cursor: pointer;
 }
 
 a:link, a:hover, a:active, a:visited, a:focus {
@@ -26,12 +27,8 @@ a:link, a:hover, a:active, a:visited, a:focus {
     color: var(--link-color);
 }
 
-tr:hover {
-   cursor: pointer;
-}
-
 a:active, tr:active {
-    background: var(--link-color);
+    background-color: var(--link-color);
     transition: .05s ease;
 }
 
