@@ -1,6 +1,7 @@
 :root {
     --link-color: #85929E;
     --hover-color: #EBF5FB;
+    --text-color: #888888;
     --desc-color: #bbbbbb;
     --bg-color: #ffffff;
 }
@@ -16,7 +17,7 @@ a, m {
     padding-bottom: 4px;
 }
 
-a:hover, tr:hover {
+a:hover, tr.link:hover {
     background-color: var(--hover-color);
     transition: .2s ease;
     cursor: pointer;
@@ -27,7 +28,7 @@ a:link, a:hover, a:active, a:visited, a:focus {
     color: var(--link-color);
 }
 
-a:active, tr:active {
+a:active, tr.link:active {
     background-color: var(--link-color);
     transition: .05s ease;
 }
@@ -39,23 +40,29 @@ a:active, tr:active {
 
 .table td.obj {
     font-weight: 500;
-    color: var(--link-color);
-    transition: .5s ease .5s;
+    color: var(--text-color);
 }
 
-tr:active td.obj, a:active {
-    color: var(--bg-color);
-    transition: none;
+.table td.obj.link {
+    color: var(--link-color);
 }
 
 .table td.desc {
     font-weight: 300;
     color: var(--desc-color);
     text-align: right;
+}
+
+.table td.link {
     transition: .5s ease .5s;
 }
 
-tr:active td.desc {
+tr:active td.obj.link, a:active {
+    color: var(--bg-color);
+    transition: none;
+}
+
+tr:active td.desc.link {
     opacity: 0;
     transition: none;
 }

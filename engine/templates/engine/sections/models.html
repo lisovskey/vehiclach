@@ -13,9 +13,9 @@
     {% if modellist %}
         <table class="table"><tbody>
             {% for model in modellist %}
-            <tr onclick="window.document.location='{% url 'engine:subsubindex' mark_name model.name %}';">
-                <td class="obj">{{ model.name }}</td>
-                <td class="desc">{{ model.kind }}-Class</td>
+            <tr class="link" onclick="window.document.location='{% url 'engine:subsubindex' mark_name model.name %}';">
+                <td class="obj link">{{ model.name }}</td>
+                <td class="desc link">{{ model.kind }}-Class</td>
             </tr>
             {% endfor %}
         </tbody></table>

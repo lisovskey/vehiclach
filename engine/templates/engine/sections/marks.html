@@ -11,9 +11,9 @@
     {% if marklist %}
         <table class="table"><tbody>
             {% for mark in marklist %}
-            <tr onclick="window.document.location='{% url 'engine:subindex' mark.name %}';">
-                <td class="obj">{{ mark.name }}</td>
-                <td class="desc">{{ mark.country }}</td>
+            <tr class="link" onclick="window.document.location='{% url 'engine:subindex' mark.name %}';">
+                <td class="obj link">{{ mark.name }}</td>
+                <td class="desc link">{{ mark.country }}</td>
             </tr>
             {% endfor %}
         </tbody></table>
