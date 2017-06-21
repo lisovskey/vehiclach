@@ -4,7 +4,7 @@
     {{ mark_name }} {{ model_name }}
 {% endblock %}
 
-{% block content %}
+{% block navigation %}
     <p class="text-center">
         <a href="{% url 'engine:index' %}">Cars</a>
         <text>></text>
@@ -12,10 +12,13 @@
         <text>></text>
         <m>{{ model_name }}</m>
     </p>
+{% endblock %}
+
+{% block content %}
     {% if evolist %}
         <table class="table"><tbody>
             {% for evo in evolist %}
-            <tr>
+            <tr class="link" onclick="window.open('https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}');">
                 <td class="obj">{{ evo.name }}</td>
                 <td class="desc">{{ evo.year }}</td>
             </tr>

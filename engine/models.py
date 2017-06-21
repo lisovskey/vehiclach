@@ -8,8 +8,8 @@ class Mark(models.Model):
     '''
     Mark of an auto
     '''
-    name = models.CharField("mark", unique=True, max_length=12)
-    country = models.CharField("country", max_length=12)
+    name = models.CharField("mark", unique=True, max_length=14)
+    country = models.CharField("country", max_length=14)
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Model(models.Model):
     '''
     Model of an auto
     '''
-    name = models.CharField("model", max_length=12)
+    name = models.CharField("model", max_length=14)
     kind = models.CharField("kind", max_length=1)
     mark = models.ForeignKey(Mark)
 
@@ -37,7 +37,7 @@ class Evo(models.Model):
     '''
     Evolution of Model of an auto
     '''
-    name = models.CharField("evo", max_length=12)
+    name = models.CharField("evo", max_length=14)
     year = models.IntegerField("year")
     model = models.ForeignKey(Model)
 

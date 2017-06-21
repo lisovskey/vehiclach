@@ -4,14 +4,17 @@
     welcome again
 {% endblock %}
 
-{% block content %}
+{% block navigation %}
     <p class="text-center">
         <m>Cars</m>
     </p>
+{% endblock %}
+
+{% block content %}    
     {% if marklist %}
         <table class="table"><tbody>
             {% for mark in marklist %}
-            <tr class="link" onclick="window.document.location='{% url 'engine:subindex' mark.name %}';">
+            <tr class="link" onclick="location.href='{% url 'engine:subindex' mark.name %}';">
                 <td class="obj link">{{ mark.name }}</td>
                 <td class="desc link">{{ mark.country }}</td>
             </tr>

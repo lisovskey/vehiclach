@@ -1,3 +1,7 @@
+'''
+Admin control
+'''
+
 from django.contrib import admin
 from .models import Mark, Model, Evo
 

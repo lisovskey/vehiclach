@@ -1,19 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
+
 :root {
-    --link-color: #85929E;
-    --hover-color: #EBF5FB;
-    --text-color: #888888;
-    --desc-color: #bbbbbb;
+    --link-color: #5D6D7E;
+    --hover-color: #D5D8DC;
+    --text-color: #777777;
+    --desc-color: #aaaaaa;
     --bg-color: #ffffff;
 }
 
-html {
-    font-size: 20px;
+body {
+    font-size: 16px;
+    font-family: 'Roboto', monospace;
     background-color: var(--bg-color);
 }
 
 a, m {
     padding: 8px;
-    padding-top: 1px;
+    padding-top: 5px;
     padding-bottom: 4px;
 }
 
@@ -28,49 +31,62 @@ a:link, a:hover, a:active, a:visited, a:focus {
     color: var(--link-color);
 }
 
-a:active, tr.link:active {
+a:active, table.table tr.link:active {
     background-color: var(--link-color);
     transition: .05s ease;
 }
 
-.table td {
+table.table td {
+    padding-top: 15px;
     border-top: 1px solid var(--hover-color);
     border-bottom: 1px solid var(--hover-color);
 }
 
-.table td.obj {
+table.table td.obj {
     font-weight: 500;
     color: var(--text-color);
 }
 
-.table td.obj.link {
+table.table td.obj.link {
     color: var(--link-color);
 }
 
-.table td.desc {
+table.table td.desc {
     font-weight: 300;
     color: var(--desc-color);
     text-align: right;
 }
 
-.table td.link {
+table.table td.link {
     transition: .5s ease .5s;
 }
 
-tr:active td.obj.link, a:active {
+table.table tr:active td.obj.link, a:active {
     color: var(--bg-color);
     transition: none;
 }
 
-tr:active td.desc.link {
+table.table tr:active td.desc.link {
     opacity: 0;
     transition: none;
 }
 
 p.text-center {
-    margin-top: 1em;
-    font-weight: 100;
+    font-weight: 300;
     color: var(--desc-color);
+}
+
+nav {
+    font-size: 18px;
+    padding-top: 1em;
+}
+
+section {
+    min-height: calc(100vh - 6.8em);
+}
+
+footer {
+    font-size: 14px;
 }
 
 .error {
