@@ -5,25 +5,21 @@
 {% endblock %}
 
 {% block navigation %}
-    <p class="text-center">
-        <a href="{% url 'engine:index' %}">Cars</a>
-        <text>></text>
-        <a href="{% url 'engine:subindex' mark_name %}">{{ mark_name }}</a>        
-        <text>></text>
-        <m>{{ model_name }}</m>
-    </p>
+    <a href="{% url 'engine:index' %}">Cars</a>
+    <text>></text>
+    <a href="{% url 'engine:subindex' mark_name %}">{{ mark_name }}</a>        
+    <text>></text>
+    <m>{{ model_name }}</m>
 {% endblock %}
 
 {% block content %}
     {% if evolist %}
-        <table class="table"><tbody>
-            {% for evo in evolist %}
-            <tr class="link" onclick="window.open('https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}');">
-                <td class="obj">{{ evo.name }}</td>
-                <td class="desc">{{ evo.year }}</td>
-            </tr>
-            {% endfor %}
-        </tbody></table>
+        {% for evo in evolist %}
+            <a href="https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}" class="point row justify-content-center" target="blank">                
+                <div class="link col">{{ evo.name }}</div>
+                <div class="desc col">{{ evo.year }}</div>               
+            </a>
+        {% endfor %}
     {% else %}
         <p class="text-center">{{ error_message }}</p>
     {% endif %}

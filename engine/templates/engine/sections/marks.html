@@ -5,21 +5,17 @@
 {% endblock %}
 
 {% block navigation %}
-    <p class="text-center">
-        <m>Cars</m>
-    </p>
+    <m>Cars</m>
 {% endblock %}
 
 {% block content %}    
     {% if marklist %}
-        <table class="table"><tbody>
-            {% for mark in marklist %}
-            <tr class="link" onclick="location.href='{% url 'engine:subindex' mark.name %}';">
-                <td class="obj link">{{ mark.name }}</td>
-                <td class="desc link">{{ mark.country }}</td>
-            </tr>
-            {% endfor %}
-        </tbody></table>
+        {% for mark in marklist %}
+            <a href="{% url 'engine:subindex' mark.name %}" class="point row justify-content-center">                
+                <div class="link col">{{ mark.name }}</div>
+                <div class="desc col">{{ mark.country }}</div>               
+            </a>
+        {% endfor %}
     {% else %}
         <p class="text-center">{{ error_message }}</p>
     {% endif %}

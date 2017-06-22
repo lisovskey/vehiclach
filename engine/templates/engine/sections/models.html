@@ -5,23 +5,19 @@
 {% endblock %}
 
 {% block navigation %}
-    <p class="text-center">
-        <a href="{% url 'engine:index' %}">Cars</a>
-        <text>></text>
-        <m>{{ mark_name }}</m>
-    </p>
+    <a href="{% url 'engine:index' %}">Cars</a>
+    <text>></text>
+    <m>{{ mark_name }}</m>
 {% endblock %}
 
 {% block content %}
     {% if modellist %}
-        <table class="table"><tbody>
-            {% for model in modellist %}
-            <tr class="link" onclick="location.href='{% url 'engine:subsubindex' mark_name model.name %}';">
-                <td class="obj link">{{ model.name }}</td>
-                <td class="desc link">{{ model.kind }}-Class</td>
-            </tr>
-            {% endfor %}
-        </tbody></table>
+        {% for model in modellist %}
+            <a href="{% url 'engine:subsubindex' mark_name model.name %}" class="point row justify-content-center">                
+                <div class="link col">{{ model.name }}</div>
+                <div class="desc col">{{ model.kind }}-Class</div>               
+            </a>
+        {% endfor %}
     {% else %}
         <p class="text-center">{{ error_message }}</p>
     {% endif %}

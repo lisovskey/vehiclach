@@ -4,26 +4,48 @@
 
         {% include 'meta.html' %}
 
-        <title>{% block title %}{% endblock %}</title>
+        <title>
+            {% block title %}{% endblock %}
+        </title>
 
         {% include 'static.html' %}
 
     </head>
     <body>
 
-        <nav>{% block navigation %}{% endblock %}</nav>
-
-        <section class="container-fluid">
-            <div class="row justify-content-sm-center">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
                 <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
-                    {% block content %}{% endblock %}
+                    
+                    <nav>
+                        <section class="row justify-content-center">
+                            <div class="col text-center">
+                                {% block navigation %}{% endblock %}
+                            </div>
+                        </section>
+                    </nav>
+                    
+                    <section class="content">
+                        {% block content %}{% endblock %}
+                    </section>
+                    
+                    <footer>
+                        <section class="row justify-content-center">
+                            <div class="col-3 text-center">
+                                <a href="https://vk.me/lisovskey", target="blank">propose</a>
+                            </div>
+                            <div class="col-5 text-center">                            
+                                <text>© 2017 lisovskey</text>                            
+                            </div>
+                            <div class="col-3 text-center">
+                                <a href="https://github.com/lisovskey/vehiclach" target="blank">source</a>
+                            </div>
+                        </section>
+                    </footer>       
+
                 </div>
             </div>
-        </section>
-
-        <footer>
-            <p class="text-center">© 2017 lisovskey</p>
-        </footer>
+        </div>
 
         {% include 'bootstrap.html' %}
 
