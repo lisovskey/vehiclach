@@ -40,8 +40,9 @@ def evos(request, mark_name, model_name):
     '''
     Subsubmain page with evolutions
     '''
-    model = get_object_or_404(Model, name=model_name)
-    evolist = Evo.objects.filter(model__name=model_name).order_by('year')
+    model = get_object_or_404(Model, name=model_name, mark__name=mark_name)
+    evolist = Evo.objects.filter(model__name=model_name,
+                                 model__mark__name=mark_name).order_by('year')
     error_message = 'seems to be empty'
 
     context = {
@@ -59,7 +60,6 @@ def add(request):
     '''
     if request.method == 'POST':
         form = PropositionForm(request.POST)
-        print(request.POST)
         if form.is_valid():
             form.save()
             return marks(None)

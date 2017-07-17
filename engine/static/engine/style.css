@@ -48,18 +48,20 @@ a:active, .link:active {
     transition: .05s ease;
 }
 
-.point {
-    border-bottom: 1px solid var(--hover-color);
+nav, .point {
+    border-bottom: 1px solid var(--hover-color);    
 }
 
-.point .obj, button {
+.point .obj {
     font-weight: 500;
     color: var(--link-color);
+    padding-left: 18px;
 }
 
 .point .desc {
     color: var(--text-color);
     text-align: right;
+    padding-right: 18px;
 }
 
 .point .obj, .point .desc {
@@ -84,7 +86,6 @@ a:active, .link:active {
 nav, footer {
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--hover-color);
 }
 
 nav {
@@ -108,6 +109,11 @@ input, select, button, button:focus {
 
 select, option, input {
     font-weight: 300;
+    color: var(--link-color);
+}
+
+button {
+    font-weight: 500;
     color: var(--link-color);
 }
 
