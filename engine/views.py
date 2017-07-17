@@ -2,10 +2,11 @@
 Pages of different levels
 '''
 
-from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .models import Mark, Model, Evo
+from .forms import PropositionForm
 
-def index(request):
+def marks(request):
     '''
     Main page with marks
     '''
@@ -19,7 +20,7 @@ def index(request):
 
     return render(request, 'engine/sections/marks.html', context)
 
-def sub_index(request, mark_name):
+def models(request, mark_name):
     '''
     Submain page with models
     '''
@@ -35,7 +36,7 @@ def sub_index(request, mark_name):
 
     return render(request, 'engine/sections/models.html', context)
 
-def sub_sub_index(request, mark_name, model_name):
+def evos(request, mark_name, model_name):
     '''
     Subsubmain page with evolutions
     '''
@@ -51,3 +52,22 @@ def sub_sub_index(request, mark_name, model_name):
     }
 
     return render(request, 'engine/sections/evos.html', context)
+
+def add(request):
+    '''
+    Supmain page with form
+    '''
+    if request.method == 'POST':
+        form = PropositionForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            return marks(None)
+    else:
+        form = PropositionForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'engine/sections/prop.html', context)

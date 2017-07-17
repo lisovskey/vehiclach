@@ -1,0 +1,41 @@
+{% extends 'engine/base.html' %}
+
+{% block title %}
+    make proposition
+{% endblock %}
+
+{% block navigation %}
+    <div class="col text-center">
+        <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
+        <text>></text>
+        <m>New</m>
+    </div>
+{% endblock %}
+
+{% block content %}    
+    <form action="/add/" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <div class="point select row justify-content-center">
+                <label for="{{ form.model.id_for_label }}" class="desc col-12 upper">Model</label>
+                <select name="model" id="{{ form.model.id_for_label }}" class="col-12 fix" required>
+                    <option value="" hidden disabled selected>Select</option>
+                    {% for model in form.choices %}
+                        <option value="{{ model.id }}">{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="point row justify-content-center">
+                <label for="{{ form.name.id_for_label }}" class="desc col-12 upper">Evo</label>
+                {{ form.name }}
+            </div>
+            <div class="point row justify-content-center">
+                <label for="{{ form.year.id_for_label }}" class="desc col-12 upper">Year</label>
+                {{ form.year }}
+            </div>
+        </fieldset>
+        <div class="link point row justify-content-center">
+            <button type="submit" class="col">Add</button>
+        </div>
+    </form>
+{% endblock %}

@@ -27,7 +27,7 @@ class Model(models.Model):
     mark = models.ForeignKey(Mark)
 
     def __str__(self):
-        return self.name
+        return self.mark.name + ' ' + self.name
 
     class Meta:
         verbose_name = 'Model'
@@ -42,7 +42,7 @@ class Evo(models.Model):
     model = models.ForeignKey(Model)
 
     def __str__(self):
-        return self.name
+        return self.model.mark.name + ' ' + self.model.name + ' ' + self.name
 
     class Meta:
         verbose_name = 'Evolution'

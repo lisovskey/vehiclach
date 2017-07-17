@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block navigation %}
-    <m>Cars</m>
+    <div class="col text-center">
+        <m>Cars</m>
+    </div>
 {% endblock %}
 
 {% block content %}    
     {% if marklist %}
         {% for mark in marklist %}
-            <a href="{% url 'engine:subindex' mark.name %}" class="point row justify-content-center">                
-                <div class="link col">{{ mark.name }}</div>
+            <a href="{% url 'engine:models' mark.name %}" class="point link row justify-content-center">                
+                <div class="obj col">{{ mark.name }}</div>
                 <div class="desc col">{{ mark.country }}</div>               
             </a>
         {% endfor %}

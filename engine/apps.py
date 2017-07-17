@@ -9,3 +9,4 @@ class EngineConfig(AppConfig):
     Engine settings
     '''
     name = 'engine'
+    verbose_name = 'Engine'

@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
 
-        {% include 'meta.html' %}
+        {% include 'engine/meta.html' %}
 
         <title>
             {% block title %}{% endblock %}
         </title>
 
-        {% include 'static.html' %}
+        {% include 'engine/static.html' %}
 
     </head>
     <body>
@@ -17,37 +17,21 @@
             <div class="row justify-content-center">
                 <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
                     
-                    <nav>
-                        <section class="row justify-content-center">
-                            <div class="col text-center">
-                                {% block navigation %}{% endblock %}
-                            </div>
-                        </section>
+                    <nav class="row justify-content-center">
+                        {% block navigation %}{% endblock %}
                     </nav>
                     
                     <section class="content">
                         {% block content %}{% endblock %}
                     </section>
                     
-                    <footer>
-                        <section class="row justify-content-center">
-                            <div class="col-3 text-center">
-                                <a href="https://vk.me/lisovskey", target="blank">propose</a>
-                            </div>
-                            <div class="col-5 text-center">                            
-                                <text>© 2017 lisovskey</text>                            
-                            </div>
-                            <div class="col-3 text-center">
-                                <a href="https://github.com/lisovskey/vehiclach" target="blank">source</a>
-                            </div>
-                        </section>
+                    <footer class="row justify-content-center">
+                        {% include 'engine/footer.html' %}
                     </footer>       
 
                 </div>
             </div>
         </div>
-
-        {% include 'bootstrap.html' %}
 
     </body>
 </html>

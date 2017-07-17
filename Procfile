@@ -1,0 +1,1 @@
+web: gunicorn vehiclach.wsgi --log-file -

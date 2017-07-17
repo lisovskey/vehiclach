@@ -5,16 +5,18 @@
 {% endblock %}
 
 {% block navigation %}
-    <a href="{% url 'engine:index' %}">Cars</a>
-    <text>></text>
-    <m>{{ mark_name }}</m>
+    <div class="col text-center">
+        <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
+        <text>></text>
+        <m>{{ mark_name }}</m>
+    </div>
 {% endblock %}
 
 {% block content %}
     {% if modellist %}
         {% for model in modellist %}
-            <a href="{% url 'engine:subsubindex' mark_name model.name %}" class="point row justify-content-center">                
-                <div class="link col">{{ model.name }}</div>
+            <a href="{% url 'engine:evos' mark_name model.name %}" class="point link row justify-content-center">                
+                <div class="obj col">{{ model.name }}</div>
                 <div class="desc col">{{ model.kind }}-Class</div>               
             </a>
         {% endfor %}

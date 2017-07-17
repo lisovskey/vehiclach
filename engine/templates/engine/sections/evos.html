@@ -5,18 +5,20 @@
 {% endblock %}
 
 {% block navigation %}
-    <a href="{% url 'engine:index' %}">Cars</a>
-    <text>></text>
-    <a href="{% url 'engine:subindex' mark_name %}">{{ mark_name }}</a>        
-    <text>></text>
-    <m>{{ model_name }}</m>
+    <div class="col text-center">
+        <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
+        <text>></text>
+        <a href="{% url 'engine:models' mark_name %}" class="text-link">{{ mark_name }}</a>        
+        <text>></text>
+        <m>{{ model_name }}</m>
+    </div>
 {% endblock %}
 
 {% block content %}
     {% if evolist %}
         {% for evo in evolist %}
-            <a href="https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}" class="point row justify-content-center" target="blank">                
-                <div class="link col">{{ evo.name }}</div>
+            <a href="https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}" class="point link row justify-content-center" target="blank">                
+                <div class="obj col">{{ evo.name }}</div>
                 <div class="desc col">{{ evo.year }}</div>               
             </a>
         {% endfor %}

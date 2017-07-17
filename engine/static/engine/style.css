@@ -15,12 +15,20 @@ body {
     background-color: var(--bg-color);
 }
 
+select, option, button, input {
+    font-family: 'Roboto', sans-serif;
+}
+
 p {
-    margin: 0px;
+    margin: 0px;    
     padding: 20px;
 }
 
-a, m {
+a {    
+    transition: .1s ease;
+}
+
+a.text-link, m {
     padding: 8px;
     padding-top: 5px;
     padding-bottom: 4px;
@@ -31,24 +39,20 @@ a:link, a:hover, a:active, a:visited, a:focus {
     color: var(--link-color);
 }
 
-a:hover, .point:hover {
+a:hover, .link:hover {
     background-color: var(--hover-color);
-    transition: .2s ease;
 }
 
-a:active, .point:active {
+a:active, .link:active {
     background-color: var(--link-color);
     transition: .05s ease;
 }
 
 .point {
-    padding-top: 16px;
-    padding-bottom: 12px;
     border-bottom: 1px solid var(--hover-color);
-    transition: .25s;
 }
 
-.point .link {
+.point .obj, button {
     font-weight: 500;
     color: var(--link-color);
 }
@@ -58,39 +62,88 @@ a:active, .point:active {
     text-align: right;
 }
 
-.point .link, .point .desc {
+.point .obj, .point .desc {
+    padding-top: 20px;
+    padding-bottom: 16px;
+}
+
+.link .obj, .link .desc, button {
     transition: .5s ease .5s;
 }
 
-.point:active .link, a:active {
+.link:active .obj, a:active, button:active {
     color: var(--bg-color);
     transition: none;
 }
 
-.point:active .desc {
+.link:active .desc {
     opacity: 0;
     transition: none;
 }
 
-section.row {
+nav, footer {
     padding-top: 20px;
-    padding-bottom: 22px;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--hover-color);
 }
 
 nav {
-    padding-top: 8px;
     font-size: 18px;
 }
 
 section.content {
-    min-height: calc(100vh - 142px);
+    min-height: calc(100vh - 130px);
 }
 
 footer {
     font-size: 14px;
 }
 
+input, select, button, button:focus {
+    height: 61px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+select, option, input {
+    font-weight: 300;
+    color: var(--link-color);
+}
+
+select.fix {
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    -webkit-appearance: none;
+}
+
+input.fix {
+    padding-right: 60px;
+}
+
+select:hover, button:hover {
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0px;
+}
+
+label {
+    margin: 0px;
+    cursor: text;
+}
+
+.upper {
+    position: absolute;
+}
+
 .error {
+    padding: 20px;
+}
+
+.error-number {
     font-size: 60px;
 }
