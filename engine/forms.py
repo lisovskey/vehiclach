@@ -9,6 +9,14 @@ class PropositionForm(forms.ModelForm):
     '''
     Adding a new evo
     '''
+    choices = models.Model.objects.order_by('mark', 'name')
+
+    def clean(self):
+        evo_name = self.cleaned_data['name']
+        model = self.cleaned_data['model']
+        if evo_name in [evo.name for evo in models.Evo.objects.filter(model=model)]:
+            raise forms.ValidationError('Evo already exists')
+
     class Meta:
         model = models.Evo
         fields = [
@@ -26,5 +34,3 @@ class PropositionForm(forms.ModelForm):
                 'autocomplete': 'off',
             }),
         }
-
-    choices = models.Model.objects.order_by('mark')

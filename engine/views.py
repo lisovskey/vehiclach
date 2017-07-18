@@ -3,6 +3,7 @@ Pages of different levels
 '''
 
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from .models import Mark, Model, Evo
 from .forms import PropositionForm
 
@@ -61,8 +62,9 @@ def add(request):
     if request.method == 'POST':
         form = PropositionForm(request.POST)
         if form.is_valid():
-            form.save()
-            return marks(None)
+            evo = form.save()
+            url = '/{}/{}'.format(evo.model.mark.name, evo.model.name)
+            return HttpResponseRedirect(url)
     else:
         form = PropositionForm()
 

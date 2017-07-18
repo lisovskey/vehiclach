@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
 
 :root {
-    --link-color: #5C748E;
-    --hover-color: #DEE4ED;
+    --link-color: #666699;
+    --hover-color: #dee4ed;
     --text-color: #999999;
+    --error-color: #cc6666;
     --bg-color: #ffffff;
 }
 
@@ -25,7 +26,7 @@ p {
 }
 
 a {    
-    transition: .1s ease;
+    transition: .2s ease-out;
 }
 
 a.text-link, m {
@@ -41,11 +42,12 @@ a:link, a:hover, a:active, a:visited, a:focus {
 
 a:hover, .link:hover {
     background-color: var(--hover-color);
+    transition: none;
 }
 
-a:active, .link:active {
+a:active, .link:active, .text-link:active {
     background-color: var(--link-color);
-    transition: .05s ease;
+    transition: .05s ease-out;
 }
 
 nav, .point {
@@ -64,8 +66,14 @@ nav, .point {
     padding-right: 18px;
 }
 
-.point .obj, .point .desc {
-    padding-top: 20px;
+.point .form-error {
+    color: var(--error-color); 
+    text-align: center;   
+}
+
+.point .obj, .point .desc, .point .form-error, 
+input, select, button {
+    padding-top: 18px;
     padding-bottom: 16px;
 }
 
@@ -101,7 +109,6 @@ footer {
 }
 
 input, select, button, button:focus {
-    height: 61px;
     border: none;
     background: none;
     outline: none;

@@ -19,7 +19,7 @@
             <div class="point select row justify-content-center">
                 <label for="{{ form.model.id_for_label }}" class="desc col-12 upper">Model</label>
                 <select name="model" id="{{ form.model.id_for_label }}" class="col-12 fix" required>
-                    <option value="" hidden disabled selected>Select</option>
+                    <option value="" hidden disabled selected></option>
                     {% for model in form.choices %}
                         <option value="{{ model.id }}">{{ model }}</option>
                     {% endfor %}
@@ -34,6 +34,11 @@
                 {{ form.year }}
             </div>
         </fieldset>
+        {% for error in form.non_field_errors %}
+        <div class="point row justify-content-center">
+            <div class="form-error col-12">{{ error }}</div>
+        </div>
+        {% endfor %}
         <div class="link point row justify-content-center">
             <button type="submit" class="col">Add</button>
         </div>
