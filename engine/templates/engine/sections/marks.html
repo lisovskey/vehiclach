@@ -13,7 +13,7 @@
 {% block content %}    
     {% if marklist %}
         {% for mark in marklist %}
-            <a href="{% url 'engine:models' mark.name %}" class="point link row justify-content-center">                
+            <a href="{% url 'engine:models' mark.url_name %}" class="point link row justify-content-center">                
                 <div class="obj col">{{ mark.name }}</div>
                 <div class="desc col">{{ mark.country }}</div>               
             </a>

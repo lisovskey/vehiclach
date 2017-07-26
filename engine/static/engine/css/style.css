@@ -1,23 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
-
 :root {
     --link-color: #666699;
-    --hover-color: #dee4ed;
+    --hover-color: #dddddd;
     --text-color: #999999;
     --error-color: #cc6666;
     --bg-color: #ffffff;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'),
+       url('../fonts/roboto-300.woff2') format('woff2'),
+       url('../fonts/roboto-300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+       url('../fonts/roboto-500.woff2') format('woff2'),
+       url('../fonts/roboto-500.woff') format('woff');
+}
+
 body {
     font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     font-weight: 300;
     color: var(--text-color);
     background-color: var(--bg-color);
 }
 
 select, option, button, input {
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
 p {
@@ -51,7 +67,7 @@ a:active, .link:active, .text-link:active {
 }
 
 nav, .point {
-    border-bottom: 1px solid var(--hover-color);    
+    border-bottom: 1px solid var(--hover-color);
 }
 
 .point .obj {
@@ -67,8 +83,7 @@ nav, .point {
 }
 
 .point .form-error {
-    color: var(--error-color); 
-    text-align: center;   
+    color: var(--error-color);
 }
 
 .point .obj, .point .desc, .point .form-error, 
@@ -108,10 +123,11 @@ footer {
     font-size: 14px;
 }
 
-input, select, button, button:focus {
+input, select, button {
     border: none;
     background: none;
     outline: none;
+    outline-offset: 0px;    
 }
 
 select, option, input {
@@ -144,9 +160,22 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0px;
 }
 
+input:invalid:focus {
+    outline: 1px solid var(--error-color);
+}
+
+input:valid:focus, select:focus, button:focus {
+    outline: 1px solid var(--link-color);
+}
+
 label {
     margin: 0px;
     cursor: text;
+}
+
+.text-center {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .upper {

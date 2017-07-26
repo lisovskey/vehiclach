@@ -10,8 +10,8 @@ urlpatterns = [
         views.marks, name='marks'),
     url(r'^add/$',
         views.add, name='add'),
-    url(r'^(?P<mark_name>[A-Z a-z_-]+)/$',
+    url(r'^(?P<url_mark_name>[^\s/]+)/$',
         views.models, name='models'),
-    url(r'^(?P<mark_name>[A-Z a-z_-]+)/(?P<model_name>[A-Za-z0-9-]+)/$',
+    url(r'^(?P<url_mark_name>[^\s/]+)/(?P<url_model_name>[^\s/]+)/$',
         views.evos, name='evos'),
 ]
