@@ -1,15 +1,18 @@
-'''
-Defenition of models
-'''
+"""
+Engine models
+"""
 
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 from datetime import datetime
+from django.core.validators import (MinValueValidator,
+                                    MaxValueValidator,
+                                    RegexValidator)
+
 
 class Mark(models.Model):
-    '''
+    """
     Mark of an auto
-    '''
+    """
     name_regex = r'^[A-z 0-9]+$'
     country_regex = r'^[A-z ]+$'
 
@@ -20,7 +23,7 @@ class Mark(models.Model):
         RegexValidator(country_regex, message='Invalid country'),
     ))
 
-    def url_name(self):
+    def name_slug(self):
         return self.name.replace(' ', '_')
 
     def __str__(self):
@@ -30,10 +33,11 @@ class Mark(models.Model):
         verbose_name = 'Mark'
         verbose_name_plural = 'Marks'
 
+
 class Model(models.Model):
-    '''
+    """
     Model of an auto
-    '''
+    """
     name_regex = r'^[A-z 0-9]+$'
     kind_regex = r'^[A-z]+$'
 
@@ -43,43 +47,44 @@ class Model(models.Model):
     kind = models.CharField('kind', max_length=1, validators=(
         RegexValidator(kind_regex, message='Invalid kind'),
     ))
-    mark = models.ForeignKey(Mark)
+    mark = models.ForeignKey(Mark, on_delete=models.CASCADE)
 
     def clean(self):
         self.kind = self.kind.upper()
 
-    def url_name(self):
+    def name_slug(self):
         return self.name.replace(' ', '_')
 
     def __str__(self):
-        return self.mark.name + ' ' + self.name
+        return f'{self.mark.name} {self.name}'
 
     class Meta:
         verbose_name = 'Model'
         verbose_name_plural = 'Models'
 
+
 class Evo(models.Model):
-    '''
+    """
     Evolution of Model of an auto
-    '''
+    """
     name_regex = r'^[A-z0-9]+$'
-    min_year = 1800
-    max_year = datetime.now().year + 1
+    year_min = 1800
+    year_max = datetime.now().year + 1
 
     name = models.CharField('evo', max_length=8, validators=(
         RegexValidator(name_regex, message='Invalid evo name'),
     ))
     year = models.IntegerField('year', validators=(
-        MinValueValidator(min_year, message='Invalid year'),
-        MaxValueValidator(max_year, message='Invalid year'),
+        MinValueValidator(year_min, message='Invalid year'),
+        MaxValueValidator(year_max, message='Invalid year'),
     ))
-    model = models.ForeignKey(Model)
+    model = models.ForeignKey(Model, on_delete=models.CASCADE)
 
     def clean(self):
         self.name = self.name.upper()
 
     def __str__(self):
-        return self.model.mark.name + ' ' + self.model.name + ' ' + self.name
+        return f'{self.model.mark.name} {self.model.name} {self.name}'
 
     class Meta:
         verbose_name = 'Evolution'

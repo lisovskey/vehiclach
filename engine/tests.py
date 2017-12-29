@@ -1,6 +1,6 @@
-'''
-Tests for the engine
-'''
+"""
+Engine tests
+"""
 
 from django.test import TestCase
 

@@ -15,7 +15,7 @@
 {% block content %}
     {% if modellist %}
         {% for model in modellist %}
-            <a href="{% url 'engine:evos' url_mark_name model.url_name %}" class="point link row justify-content-center">                
+            <a href="{% url 'engine:evos' mark_name_slug model.name_slug %}" class="point link row justify-content-center">                
                 <div class="obj col">{{ model.name }}</div>
                 <div class="desc col">{{ model.kind }}-Class</div>               
             </a>

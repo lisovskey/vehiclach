@@ -3,11 +3,11 @@
     <head>
 
         {% include 'engine/meta.html' %}
-
+        
         <title>
-            {% block title %}{% endblock %}
+            {% block title %} welcome again {% endblock %}
         </title>
-
+        
         {% include 'engine/static.html' %}
 
     </head>
@@ -21,9 +21,9 @@
                         {% block navigation %}{% endblock %}
                     </nav>
                     
-                    <section class="content">
+                    <main>
                         {% block content %}{% endblock %}
-                    </section>
+                    </main>
                     
                     <footer class="row justify-content-center">
                         {% include 'engine/footer.html' %}

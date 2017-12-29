@@ -115,7 +115,7 @@ nav {
     font-size: 18px;
 }
 
-section.content {
+main {
     min-height: calc(100vh - 130px);
 }
 

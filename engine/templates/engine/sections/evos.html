@@ -8,7 +8,7 @@
     <div class="col text-center">
         <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
         <text>></text>
-        <a href="{% url 'engine:models' url_mark_name %}" class="text-link">{{ mark_name }}</a>        
+        <a href="{% url 'engine:models' mark_name_slug %}" class="text-link">{{ mark_name }}</a>        
         <text>></text>
         <m>{{ model_name }}</m>
     </div>

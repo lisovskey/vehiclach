@@ -1,17 +1,19 @@
-'''
+"""
 Engine urls
-'''
+"""
 
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
+
+app_name = 'engine'
 urlpatterns = [
-    url(r'^$',
-        views.marks, name='marks'),
-    url(r'^add/$',
-        views.add, name='add'),
-    url(r'^(?P<url_mark_name>[^\s/]+)/$',
-        views.models, name='models'),
-    url(r'^(?P<url_mark_name>[^\s/]+)/(?P<url_model_name>[^\s/]+)/$',
-        views.evos, name='evos'),
+    path('',
+         views.marks, name='marks'),
+    path('add/',
+         views.add, name='add'),
+    path('<slug:mark_name_slug>/',
+         views.models, name='models'),
+    path('<slug:mark_name_slug>/<slug:model_name_slug>/',
+         views.evos, name='evos'),
 ]
