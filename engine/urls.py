@@ -3,17 +3,17 @@ Engine urls
 """
 
 from django.urls import path
-from . import views
+from .views import MarkListView, EvoCreateView, ModelListView, EvoListView
 
 
 app_name = 'engine'
 urlpatterns = [
     path('',
-         views.marks, name='marks'),
+         MarkListView.as_view(), name='marks'),
     path('add/',
-         views.add, name='add'),
-    path('<slug:mark_name_slug>/',
-         views.models, name='models'),
-    path('<slug:mark_name_slug>/<slug:model_name_slug>/',
-         views.evos, name='evos'),
+         EvoCreateView.as_view(), name='add'),
+    path('<slug:mark_slug>/',
+         ModelListView.as_view(), name='models'),
+    path('<slug:mark_slug>/<slug:model_slug>/',
+         EvoListView.as_view(), name='evos'),
 ]

@@ -11,14 +11,14 @@
 {% endblock %}
 
 {% block content %}    
-    {% if marklist %}
-        {% for mark in marklist %}
-            <a href="{% url 'engine:models' mark.name_slug %}" class="point link row justify-content-center">                
+    {% if mark_list %}
+        {% for mark in mark_list %}
+            <a href="{% url 'engine:models' mark.slug %}" class="point link row justify-content-center">                
                 <div class="obj col">{{ mark.name }}</div>
                 <div class="desc col">{{ mark.country }}</div>               
             </a>
         {% endfor %}
     {% else %}
-        <p class="text-center">{{ error_message }}</p>
+        <p class="text-center">seems to be an error</p>
     {% endif %}
 {% endblock %}

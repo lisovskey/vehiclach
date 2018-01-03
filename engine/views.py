@@ -3,94 +3,77 @@ Engine views
 """
 
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from .models import Mark, Model, Evo
-from .forms import PropositionForm
+from .forms import EvoForm
 
 
-def marks(request):
+class MarkListView(ListView):
     """
     Main page with marks
     """
-    marklist = Mark.objects.order_by('name')
-    error_message = 'seems to be 404'
-
-    context = {
-        'marklist': marklist,
-        'error_message': error_message,
-    }
-
-    return render(request, 'engine/sections/marks.html', context)
+    context_object_name = 'mark_list'
+    queryset = Mark.objects.order_by('name')
 
 
-def models(request, mark_name_slug):
+class ModelListView(ListView):
     """
     Submain page with models
     """
-    mark_name = mark_name_slug.replace('_', ' ')
-    mark = get_object_or_404(Mark, name=mark_name)
-    modellist = mark.model_set.all().order_by('name')
-    error_message = 'seems to be empty'
+    context_object_name = 'model_list'
 
-    context = {
-        'modellist': modellist,
-        'mark_name': mark_name,
-        'mark_name_slug': mark_name_slug,
-        'error_message': error_message,
-    }
+    def get_queryset(self):
+        self.mark = get_object_or_404(Mark, slug=self.kwargs['mark_slug'])
+        return self.mark.model_set.all().order_by('name')
 
-    return render(request, 'engine/sections/models.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mark_name'] = self.mark.name
+        context['mark_slug'] = self.mark.slug
+        return context
 
 
-def evos(request, mark_name_slug, model_name_slug):
+class EvoListView(ListView):
     """
     Subsubmain page with evolutions
     """
-    mark_name = mark_name_slug.replace('_', ' ')
-    model_name = model_name_slug.replace('_', ' ')
-    model = get_object_or_404(Model, name=model_name, mark__name=mark_name)
-    evolist = model.evo_set.all().order_by('year')
-    error_message = 'seems to be empty'
+    context_object_name = 'evo_list'
 
-    context = {
-        'evolist': evolist,
-        'mark_name': mark_name,
-        'mark_name_slug': mark_name_slug,
-        'model_name': model_name,
-        'error_message': error_message,
-    }
+    def get_queryset(self):
+        self.model = get_object_or_404(Model, slug=self.kwargs['model_slug'],
+                                       mark__slug=self.kwargs['mark_slug'])
+        return self.model.evo_set.all().order_by('year')
 
-    return render(request, 'engine/sections/evos.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_name'] = self.model.name
+        context['mark_name'] = self.model.mark.name
+        context['mark_slug'] = self.model.mark.slug
+        return context
 
 
-def add(request):
+class EvoCreateView(CreateView):
     """
-    Supmain page with form
+    Submain page with form
     """
-    if request.method == 'POST':
-        form = PropositionForm(request.POST)
-        if form.is_valid():
-            evo = form.save()
-            url = '/{}/{}'.format(evo.model.mark.url_name(),
-                                  evo.model.url_name())
-            return HttpResponseRedirect(url)
-    else:
-        form = PropositionForm()
+    model = Evo
+    form_class = EvoForm
+    form_error = None
 
-    if form['name'].errors:
-        form_error = 'Invalid evo name'
-        if form['year'].errors:
-            form_error += ' and year'
-    elif form['year'].errors:
-        form_error = 'Invalid year'
-    elif form.errors.get('__all__'):
-        form_error = form.errors['__all__'][0]
-    else:
-        form_error = ''
+    def form_invalid(self, form):
+        if form['name'].errors:
+            self.form_error = 'Invalid evo name'
+            if form['year'].errors:
+                self.form_error += ' and year'
+        elif form['year'].errors:
+            self.form_error = 'Invalid year'
+        elif form.errors.get('__all__'):
+            self.form_error = form.errors['__all__'][0]
+        return super().form_invalid(form)
 
-    context = {
-        'form': form,
-        'form_error': form_error,
-    }
-
-    return render(request, 'engine/sections/prop.html', context)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['form_error'] = self.form_error
+        return context

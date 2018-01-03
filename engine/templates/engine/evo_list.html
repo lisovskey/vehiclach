@@ -8,21 +8,21 @@
     <div class="col text-center">
         <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
         <text>></text>
-        <a href="{% url 'engine:models' mark_name_slug %}" class="text-link">{{ mark_name }}</a>        
+        <a href="{% url 'engine:models' mark_slug %}" class="text-link">{{ mark_name }}</a>        
         <text>></text>
         <m>{{ model_name }}</m>
     </div>
 {% endblock %}
 
 {% block content %}
-    {% if evolist %}
-        {% for evo in evolist %}
+    {% if evo_list %}
+        {% for evo in evo_list %}
             <a href="https://google.com/search?q={{ mark_name }}+{{ model_name }}+{{ evo.name }}" class="point link row justify-content-center" target="blank">                
                 <div class="obj col">{{ evo.name }}</div>
                 <div class="desc col">{{ evo.year }}</div>               
             </a>
         {% endfor %}
     {% else %}
-        <p class="text-center">{{ error_message }}</p>
+        <p class="text-center">seems to be empty</p>
     {% endif %}
 {% endblock %}

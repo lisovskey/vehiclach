@@ -13,14 +13,14 @@
 {% endblock %}
 
 {% block content %}
-    {% if modellist %}
-        {% for model in modellist %}
-            <a href="{% url 'engine:evos' mark_name_slug model.name_slug %}" class="point link row justify-content-center">                
+    {% if model_list %}
+        {% for model in model_list %}
+            <a href="{% url 'engine:evos' mark_slug model.slug %}" class="point link row justify-content-center">                
                 <div class="obj col">{{ model.name }}</div>
                 <div class="desc col">{{ model.kind }}-Class</div>               
             </a>
         {% endfor %}
     {% else %}
-        <p class="text-center">{{ error_message }}</p>
+        <p class="text-center">seems to be empty</p>
     {% endif %}
 {% endblock %}

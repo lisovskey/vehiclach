@@ -4,6 +4,7 @@ Engine models
 
 from django.db import models
 from datetime import datetime
+from django.urls import reverse
 from django.core.validators import (MinValueValidator,
                                     MaxValueValidator,
                                     RegexValidator)
@@ -22,9 +23,7 @@ class Mark(models.Model):
     country = models.CharField('country', max_length=14, validators=(
         RegexValidator(country_regex, message='Invalid country'),
     ))
-
-    def name_slug(self):
-        return self.name.replace(' ', '_')
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
@@ -48,12 +47,10 @@ class Model(models.Model):
         RegexValidator(kind_regex, message='Invalid kind'),
     ))
     mark = models.ForeignKey(Mark, on_delete=models.CASCADE)
+    slug = models.SlugField()
 
     def clean(self):
         self.kind = self.kind.upper()
-
-    def name_slug(self):
-        return self.name.replace(' ', '_')
 
     def __str__(self):
         return f'{self.mark.name} {self.name}'
@@ -82,6 +79,11 @@ class Evo(models.Model):
 
     def clean(self):
         self.name = self.name.upper()
+
+    def get_absolute_url(self):
+        return reverse('engine:evos', kwargs={
+            'mark_slug': self.model.mark.slug,
+            'model_slug': self.model.slug})
 
     def __str__(self):
         return f'{self.model.mark.name} {self.model.name} {self.name}'

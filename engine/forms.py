@@ -6,13 +6,14 @@ from django import forms
 from . import models
 
 
-class PropositionForm(forms.ModelForm):
+class EvoForm(forms.ModelForm):
     """
     Adding a new evo
     """
     choices = models.Model.objects.order_by('mark__name', 'name')
 
     def clean(self):
+        self.cleaned_data = super().clean()
         evo_name = self.cleaned_data['name'].upper()
         model = self.cleaned_data['model']
         if evo_name in [evo.name for evo in model.evo_set.all()]:
