@@ -1,20 +1,20 @@
 {% extends 'engine/base.html' %}
 
 {% block title %}
-    {{ block.super }}, 500
+	{{ block.super }}, 500
 {% endblock %}
 
 {% block navigation %}
-    <div class="col text-center">
-        <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
-        <text>></text>
-        <m>Error</m>
-    </div>
+	<div class="col text-center">
+		<a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
+		<text>></text>
+		<m>Error</m>
+	</div>
 {% endblock %}
 
 {% block content %}
-    <div class="error">
-        <div class="text-center">seems to be</div>
-        <div class="text-center error-number">500</div>
-    </div>
+	<div class="error">
+		<div class="text-center">seems to be</div>
+		<div class="text-center error-number">500</div>
+	</div>
 {% endblock %}

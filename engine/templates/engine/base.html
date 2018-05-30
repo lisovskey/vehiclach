@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+	<head>
 
-        {% include 'engine/meta.html' %}
-        
-        <title>
-            {% block title %} welcome again {% endblock %}
-        </title>
-        
-        {% include 'engine/static.html' %}
+		{% include 'engine/meta.html' %}
+		
+		<title>
+			{% block title %} welcome again {% endblock %}
+		</title>
+		
+		{% include 'engine/static.html' %}
 
-    </head>
-    <body>
+	</head>
+	<body>
 
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
-                    
-                    <nav class="row justify-content-center">
-                        {% block navigation %}{% endblock %}
-                    </nav>
-                    
-                    <main>
-                        {% block content %}{% endblock %}
-                    </main>
-                    
-                    <footer class="row justify-content-center">
-                        {% include 'engine/footer.html' %}
-                    </footer>       
+		<div class="container-fluid">
+			<div class="row justify-content-center">
+				<div class="col-sm-9 col-md-7 col-lg-5 col-xl-4">
+					
+					<nav class="row justify-content-center">
+						{% block navigation %}{% endblock %}
+					</nav>
+					
+					<main>
+						{% block content %}{% endblock %}
+					</main>
+					
+					<footer class="row justify-content-center">
+						{% include 'engine/footer.html' %}
+					</footer>       
 
-                </div>
-            </div>
-        </div>
+				</div>
+			</div>
+		</div>
 
-    </body>
+	</body>
 </html>

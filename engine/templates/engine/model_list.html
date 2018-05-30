@@ -1,26 +1,26 @@
 {% extends 'engine/base.html' %}
 
 {% block title %}
-    {{ mark_name }}
+	{{ mark_name }}
 {% endblock %}
 
 {% block navigation %}
-    <div class="col text-center">
-        <a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
-        <text>></text>
-        <m>{{ mark_name }}</m>
-    </div>
+	<div class="col text-center">
+		<a href="{% url 'engine:marks' %}" class="text-link">Cars</a>
+		<text>></text>
+		<m>{{ mark_name }}</m>
+	</div>
 {% endblock %}
 
 {% block content %}
-    {% if model_list %}
-        {% for model in model_list %}
-            <a href="{% url 'engine:evos' mark_slug model.slug %}" class="point link row justify-content-center">                
-                <div class="obj col">{{ model.name }}</div>
-                <div class="desc col">{{ model.kind }}-Class</div>               
-            </a>
-        {% endfor %}
-    {% else %}
-        <p class="text-center">seems to be empty</p>
-    {% endif %}
+	{% if model_list %}
+		{% for model in model_list %}
+			<a href="{% url 'engine:evos' mark_slug model.slug %}" class="point link row justify-content-center">                
+				<div class="obj col">{{ model.name }}</div>
+				<div class="desc col">{{ model.kind }}-Class</div>               
+			</a>
+		{% endfor %}
+	{% else %}
+		<p class="text-center">seems to be empty</p>
+	{% endif %}
 {% endblock %}
